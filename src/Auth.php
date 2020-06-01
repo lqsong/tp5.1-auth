@@ -225,11 +225,11 @@ class Auth
             $_authList[$uid . $t] = [];
             return [];
         }
-        $map = array(
-            'id' => ['in', $ids],
-            'type' => $type,
-            'status' => 1,
-        );
+        $map = [
+            ['id','in',$ids],
+            ['type','=',$type],
+            ['status','=',1],
+        ];
         //读取用户组所有权限规则
         $rules = Db::name($this->config['auth_rule'])->where($map)->field('condition,name')->select();
         //循环规则，判断结果。
